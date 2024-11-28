@@ -175,9 +175,6 @@ fb_image *fb_read_png_image(char *file)
 	if(png_get_bit_depth(png_ptr, info_ptr) == 16) {
 		png_set_strip_16(png_ptr);
 	}
-	/*if(png_get_valid(png_ptr,info_ptr,PNG_INFO_tRNS)) {
-		png_set_tRNS_to_alpha(png_ptr);
-	}*/
 
 	//not support color type
 	if(png_get_channels(png_ptr, info_ptr) != 4) {
@@ -194,13 +191,12 @@ fb_image *fb_read_png_image(char *file)
 		fclose(fp);
 		return NULL;
 	}
-	
 	char *dst = image->content;
 	char **row_pointers;
 	char *src;
 	row_pointers = (char **)png_get_rows(png_ptr, info_ptr);
 	int i = 0;
-	while(i <pngheight )
+	while(i <pngheight)
 	{
 		src = row_pointers[i];
 		memcpy(dst, src, pngwidth * 4);

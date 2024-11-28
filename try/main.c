@@ -25,6 +25,9 @@ int main(int argc, char* argv[])
 	fb_draw_rect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,BLACK);
 	fb_update();
 
-	
+	sleep(1);
+	fb_draw_line(0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1, RED);
+	fb_draw_line(0, SCREEN_HEIGHT - 1, SCREEN_WIDTH - 1, 0, RED);
+	fb_update();
 	return 0;
 }

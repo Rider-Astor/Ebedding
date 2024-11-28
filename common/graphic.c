@@ -26,6 +26,11 @@ static struct area { int x1, x2, y1, y2; } update_area = {0, 0, 0, 0};
         (pa)->y2 = 0; \
     } while (0)
 
+void printScreenInfo(int fd, struct fb_fix_screeninfo fb_fix, struct fb_var_screeninfo fb_var, char * dev){
+    //打印一些帧缓冲的详细信息，包括每像素的比特数、屏幕的分辨率、虚拟分辨率、内存长度等。
+    
+}
+
 void fb_init(char *dev) {
     int fd;
     struct fb_fix_screeninfo fb_fix;
@@ -35,9 +40,9 @@ void fb_init(char *dev) {
         return; /*Already initialized*/
 
     //进入终端图形模式
-    fd = open("/dev/tty0", O_RDWR, 0);
-    ioctl(fd, KDSETMODE, KD_GRAPHICS);
-    close(fd);
+    // fd = open("/dev/tty0", O_RDWR, 0);
+    // ioctl(fd, KDSETMODE, KD_GRAPHICS);
+    // close(fd);
 
     //First: Open the device
     if ((fd = open(dev, O_RDWR)) < 0) {
@@ -52,7 +57,7 @@ void fb_init(char *dev) {
         printf("Unable to FBIOGET_VSCREENINFO %s\n", dev);
         return;
     }
-
+    
     printf(
         "framebuffer info: bits_per_pixel=%u,size=(%d,%d),virtual_pos_size=(%d,%d)(%d,%d),line_length=%u,smem_len=%u\n",
         fb_var.bits_per_pixel,
@@ -89,6 +94,8 @@ void fb_init(char *dev) {
     return;
 }
 
+
+//copy area(size=pa) from src to dst
 static void _copy_area(int *dst, int *src, struct area *pa) {
     int x, y, w, h;
     x = pa->x1;
@@ -305,22 +312,23 @@ void fb_draw_image(int x, int y, fb_image *image, int color) {
         for (int i = 0; i < h; ++i) {
             for (int j = 0; j < w; ++j) {
                 char *src_ = src + i * image->pixel_w * 4 + j * 4;
-                int alpha = src_[0];
+                int alpha = src_[3];
                 int *dst_ = dst + i * SCREEN_WIDTH + j;
                 char *bgr = (char *)dst_;
-                switch (alpha) {
-                    case 0:
-                        break;
-                    case 255:
+                switch(alpha) {
+                    case 0: break;
+                    case 255:{
                         bgr[0] = src_[0];
                         bgr[1] = src_[1];
                         bgr[2] = src_[2];
                         break;
-                    default:
-                        bgr[0] += ((src_[0] - bgr[0]) * alpha) >> 8;
-                        bgr[1] += ((src_[1] - bgr[1]) * alpha) >> 8;
-                        bgr[2] += ((src_[2] - bgr[2]) * alpha) >> 8;
+                    }
+                    default:{
+                        bgr[0] += (((src_[0] - bgr[0]) * alpha) >> 8);
+                        bgr[1] += (((src_[1] - bgr[1]) * alpha) >> 8);
+                        bgr[2] += (((src_[2] - bgr[2]) * alpha) >> 8);
                         break;
+                    }
                 }
             }
         }
