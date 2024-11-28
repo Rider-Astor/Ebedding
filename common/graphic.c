@@ -40,9 +40,9 @@ void fb_init(char *dev) {
         return; /*Already initialized*/
 
     //进入终端图形模式
-    // fd = open("/dev/tty0", O_RDWR, 0);
-    // ioctl(fd, KDSETMODE, KD_GRAPHICS);
-    // close(fd);
+    fd = open("/dev/tty0", O_RDWR, 0);
+    ioctl(fd, KDSETMODE, KD_GRAPHICS);
+    close(fd);
 
     //First: Open the device
     if ((fd = open(dev, O_RDWR)) < 0) {
