@@ -2,23 +2,61 @@
 #include "../common/common.h"
 
 #define COLOR_BACKGROUND	FB_COLOR(0xff,0xff,0xff)
+#define RED	FB_COLOR(255,0,0)
+#define ORANGE	FB_COLOR(255,165,0)
+#define YELLOW	FB_COLOR(255,255,0)
+#define GREEN	FB_COLOR(0,255,0)
+#define CYAN	FB_COLOR(0,127,255)
+#define BLUE	FB_COLOR(0,0,255)
+#define PURPLE	FB_COLOR(139,0,255)
+#define WHITE   FB_COLOR(255,255,255)
+#define BLACK   FB_COLOR(0,0,0)
 
+static int radius[5] = {45,47,49,51,53};
 static int touch_fd;
+static struct OldPositino{
+	int x, y;
+}old[5];
+
 static void touch_event_cb(int fd)
 {
-	int type,x,y,finger;
+	int type,x,y,finger, color;
 	type = touch_read(fd, &x,&y,&finger);
 	switch(type){
 	case TOUCH_PRESS:
-		printf("TOUCH_PRESS：x=%d,y=%d,finger=%d\n",x,y,finger);
+		printf("TOUCH_PRESS:x=%d,y=%d,finger=%d\n",x,y,finger);
+		switch(finger){
+			case 0: color = ORANGE;break;
+			case 1: color = BLUE;break;
+			case 2: color = RED;break;
+			case 3: color = GREEN;break;
+			case 4: color = BLACK;break;
+			default: break;
+		}
+		fb_draw_circle(x, y, radius[finger], color);
+		old[finger].x = x;
+		old[finger].y = y;
 		break;
 	case TOUCH_MOVE:
-		printf("TOUCH_MOVE：x=%d,y=%d,finger=%d\n",x,y,finger);
+		switch(finger){
+			case 0: color = ORANGE;break;
+			case 1: color = BLUE;break;
+			case 2: color = RED;break;
+			case 3: color = GREEN;break;
+			case 4: color = BLACK;break;
+			default: break;
+		}
+		fb_draw_circle(old[finger].x, old[finger].y, radius[finger]+2, COLOR_BACKGROUND);
+		fb_draw_circle(x, y, radius[finger], color);
+		old[finger].x = x;
+		old[finger].y = y;
 		break;
 	case TOUCH_RELEASE:
-		printf("TOUCH_RELEASE：x=%d,y=%d,finger=%d\n",x,y,finger);
+		printf("TOUCH_RELEASE:x=%d,y=%d,finger=%d\n",x,y,finger);
+		fb_draw_circle(x, y, radius[finger]+2, COLOR_BACKGROUND);
 		break;
 	case TOUCH_ERROR:
+		printf("Touch Error!");
 		printf("close touch fd\n");
 		close(fd);
 		task_delete_file(fd);
@@ -28,7 +66,7 @@ static void touch_event_cb(int fd)
 	}
 	fb_update();
 	return;
-}
+}	
 
 int main(int argc, char *argv[])
 {
@@ -37,7 +75,7 @@ int main(int argc, char *argv[])
 	fb_update();
 
 	//打开多点触摸设备文件, 返回文件fd
-	touch_fd = touch_init("/dev/input/event2");
+	touch_fd = touch_init("/dev/input/event1");
 	//添加任务, 当touch_fd文件可读时, 会自动调用touch_event_cb函数
 	task_add_file(touch_fd, touch_event_cb);
 	
