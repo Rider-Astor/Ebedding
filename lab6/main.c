@@ -13,7 +13,7 @@ static char * send_to_vosk_server(char *file);
 
 int main(int argc, char *argv[])
 {
-	audio_record_init(NULL, PCM_SAMPLE_RATE, 1, 16); //单声道，S16采样
+	audio_record_init("plughw", PCM_SAMPLE_RATE, 1, 16); //单声道，S16采样   pulse audio服务不知道为什么用不了    NULL
 
 	pcm_info_st pcm_info;
 	uint8_t *pcm_buf = audio_record(2000, &pcm_info); //录2秒音频

@@ -7,7 +7,7 @@ LDFLAGS=-L.. -lvosk -ldl -lpthread -Wl,-rpath=.
 all: server
 
 server: server.o
-	$(CC) $(LDFLAGS) -o $@ $^
+	$(CC) -o $@ $^ $(LDFLAGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<

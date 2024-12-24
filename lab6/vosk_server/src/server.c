@@ -15,7 +15,6 @@
 
 #define IP "127.0.0.1"
 #define PORT 8011
-#define CONF_WORDS "words.txt"
 
 const int BACKLOG = 5;
 const int BUFFER_LEN = 1024;
@@ -81,27 +80,9 @@ void *receive(void *pth_arg)
 
 int main()
 {
-    FILE * fp;
-    char * words = NULL;
-    size_t len = 0;
-    size_t read;
-
-    fp = fopen(CONF_WORDS, "r");
-    if (fp == NULL) {
-        exit(EXIT_FAILURE);
-    }
-
-    read = getline(&words, &len, fp);
-    if(read != -1) {
-        printf("load words: %s", words);
-    } else {
-		printf("load words error");
-		exit(EXIT_FAILURE);
-	}
-
     // vosk_set_log_level(-1);
-    model = vosk_model_new("model");
-    recognizer = vosk_recognizer_new_grm(model, 16000.0, words);
+    model = vosk_model_new("model-0.22");
+    recognizer = vosk_recognizer_new(model, 16000.0);
 
 	int skfd = -1, ret = -1;
 	skfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -153,8 +134,6 @@ int main()
 	}
 
 	close(skfd);
-	fclose(fp);
-	if (words) free(words);
     vosk_recognizer_free(recognizer);
     vosk_model_free(model);
 	return 0;
