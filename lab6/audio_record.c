@@ -1,5 +1,5 @@
 #include <alsa/asoundlib.h>
-
+#include <signal.h>
 #include "audio_util.h"
 
 #define LogE	printf
@@ -11,6 +11,8 @@ static snd_pcm_sw_params_t *alsa_swparams;
 static int byte_per_frame;
 
 static pcm_info_st alsa_info;
+
+extern volatile sig_atomic_t stop_recording;
 
 int audio_record_init(char *dev, int rate, int channel, int sample_bit)
 {
@@ -201,6 +203,41 @@ int audio_record_read(void *frame, int frame_num)
 	return frame_num-num_frames;
 }
 
+
+//interruptible record thread
+
+
+int audio_record_read_interruptible(void *frame, int frame_num)
+{
+	snd_pcm_sframes_t num_frames;
+	snd_pcm_sframes_t res;
+	int bytes_per_sample = byte_per_frame;
+
+	num_frames = frame_num;
+	while(num_frames > 0)
+	{
+		if (!stop_recording) {  // 检测中断标志
+            LogE("Record stopped by user.\n");
+            break;  // 退出录音循环
+        }
+		res = snd_pcm_readi(alsa_handler, frame, alsa_info.sampleRate);
+		if((res == -EINTR)||(res == -EAGAIN)) continue;
+		if(res < 0) {
+			res = snd_pcm_recover(alsa_handler, res, 0);
+			if(res < 0) {
+				LogE("read snd_pcm_recover error\n");
+				return -1;
+			}
+			continue;
+		}
+		if(res == 0) break;
+		num_frames -= res;
+		frame += res*bytes_per_sample;
+	}
+	LogE("Record End.\n");
+	return frame_num-num_frames;
+}
+
 /*==========================================================*/
 
 uint8_t * audio_record(int time_ms, pcm_info_st *pcm_info)
@@ -228,12 +265,12 @@ uint8_t * audio_record(int time_ms, pcm_info_st *pcm_info)
 	uint8_t *buf = malloc(frame_num * byte_per_frame);
 
 	audio_record_start();
-	n = audio_record_read(buf, frame_num);
+	n = audio_record_read_interruptible(buf, frame_num);
 	audio_record_stop();
 
 	if(n != frame_num)
 	{
-		LogE("audio record frame %d != %d\n", n, frame_num);
+		LogE("Audio record: predict frame = %d; recorded frame = %d\n", frame_num, n);
 		if(n <= 0) {
 			free(buf);
 			return NULL;
