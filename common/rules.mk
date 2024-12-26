@@ -7,7 +7,7 @@ CFLAGS:=-Wall -O2
 LDFLAGS:=-Wall
 
 INCLUDE := -I../common/external/include
-LIB := -L../common/external/lib -ljpeg -lfreetype -lpng -lasound -lz -lc -lm
+LIB := -L../common/external/lib -ljpeg -lfreetype -lpng -lasound -lz -lc -lm -lcurl -lcjson
 
 EXESRCS := ../common/graphic.c ../common/touch.c ../common/image.c ../common/task.c $(EXESRCS)
 

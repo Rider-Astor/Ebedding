@@ -1,0 +1,67 @@
+ * Serving Flask app 'Chat'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.137.139:5001
+Press CTRL+C to quit
+127.0.0.1 - - [26/Dec/2024 10:58:27] "POST /api/python-service HTTP/1.1" 200 -
+ * Serving Flask app 'Chat'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.137.139:5001
+Press CTRL+C to quit
+[2024-12-26 11:23:30,318] ERROR in app: Exception on /api/python-service [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/orangepi/WorkPlace/lab-2022-st/lab6/Chat.py", line 36, in model_function
+    response = client.chat.completions.create(
+  File "/usr/local/lib/python3.10/dist-packages/zhipuai/api_resource/chat/completions.py", line 96, in create
+    return self._post(
+  File "/usr/local/lib/python3.10/dist-packages/zhipuai/core/_http_client.py", line 809, in post
+    return cast(ResponseT, self.request(cast_type, opts, stream=stream, stream_cls=stream_cls))
+  File "/usr/local/lib/python3.10/dist-packages/zhipuai/core/_http_client.py", line 495, in request
+    return self._request(
+  File "/usr/local/lib/python3.10/dist-packages/zhipuai/core/_http_client.py", line 582, in _request
+    raise self._make_status_error(err.response) from None
+zhipuai.core._errors.APIRequestFailedError: Error code: 400, with error text {"error":{"code":"1213","message":"未正常接收到prompt参数。"}}
+127.0.0.1 - - [26/Dec/2024 11:23:30] "POST /api/python-service HTTP/1.1" 500 -
+[2024-12-26 11:24:38,758] ERROR in app: Exception on /api/python-service [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/orangepi/WorkPlace/lab-2022-st/lab6/Chat.py", line 36, in model_function
+    response = client.chat.completions.create(
+  File "/usr/local/lib/python3.10/dist-packages/zhipuai/api_resource/chat/completions.py", line 96, in create
+    return self._post(
+  File "/usr/local/lib/python3.10/dist-packages/zhipuai/core/_http_client.py", line 809, in post
+    return cast(ResponseT, self.request(cast_type, opts, stream=stream, stream_cls=stream_cls))
+  File "/usr/local/lib/python3.10/dist-packages/zhipuai/core/_http_client.py", line 495, in request
+    return self._request(
+  File "/usr/local/lib/python3.10/dist-packages/zhipuai/core/_http_client.py", line 582, in _request
+    raise self._make_status_error(err.response) from None
+zhipuai.core._errors.APIRequestFailedError: Error code: 400, with error text {"error":{"code":"1213","message":"未正常接收到prompt参数。"}}
+127.0.0.1 - - [26/Dec/2024 11:24:38] "POST /api/python-service HTTP/1.1" 500 -
+127.0.0.1 - - [26/Dec/2024 11:25:56] "POST /api/python-service HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2024 11:34:59] "POST /api/python-service HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2024 11:38:39] "POST /api/python-service HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2024 11:42:48] "POST /api/python-service HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2024 11:44:20] "POST /api/python-service HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2024 11:46:05] "POST /api/python-service HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2024 11:46:17] "POST /api/python-service HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2024 11:47:03] "POST /api/python-service HTTP/1.1" 200 -

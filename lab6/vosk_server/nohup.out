@@ -1,0 +1,142 @@
+LOG (VoskAPI:ReadDataFiles():model.cc:213) Decoding params beam=12 max-active=5000 lattice-beam=4
+LOG (VoskAPI:ReadDataFiles():model.cc:216) Silence phones 1:2:3:4:5:6:7:8:9:10
+LOG (VoskAPI:RemoveOrphanNodes():nnet-nnet.cc:948) Removed 0 orphan nodes.
+LOG (VoskAPI:RemoveOrphanComponents():nnet-nnet.cc:847) Removing 0 orphan components.
+LOG (VoskAPI:CompileLooped():nnet-compile-looped.cc:345) Spent 0.106782 seconds in looped compilation.
+LOG (VoskAPI:ReadDataFiles():model.cc:248) Loading i-vector extractor from model-0.22/ivector/final.ie
+LOG (VoskAPI:ComputeDerivedVars():ivector-extractor.cc:183) Computing derived variables for iVector extractor
+LOG (VoskAPI:ComputeDerivedVars():ivector-extractor.cc:204) Done.
+LOG (VoskAPI:ReadDataFiles():model.cc:281) Loading HCL and G from model-0.22/graph/HCLr.fst model-0.22/graph/Gr.fst
+LOG (VoskAPI:ReadDataFiles():model.cc:302) Loading winfo model-0.22/graph/phones/word_boundary.int
+client_port = 55534, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 华中科技大学
+client_port = 48890, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 
+client_port = 38742, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 华中科技大学
+client_port = 42872, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 35408, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 43798, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 43760, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 58850, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 51236, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 38914, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 43110, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 38490, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 华中科技大学
+client_port = 58124, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 52974, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 您好
+client_port = 58958, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 49108, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 60450, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 47376, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 50738, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 60524, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 54698, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 50368, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 39924, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 40744, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 34716, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 52108, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 56764, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 58658, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 40942, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 40588, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 48562, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 华中科技大学
+client_port = 54082, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 41318, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 55154, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 华中科技大学
+client_port = 49852, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 36500, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 44630, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 35770, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 54484, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 一二三四五六七
+client_port = 53864, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 你好
+client_port = 54880, client_ip = 127.0.0.1
+recv from client /tmp/test.wav 
+recognize_text: 一二三四五�LOG (VoskAPI:ReadDataFiles():model.cc:213) Decoding params beam=12 max-active=5000 lattice-beam=4
+LOG (VoskAPI:ReadDataFiles():model.cc:216) Silence phones 1:2:3:4:5:6:7:8:9:10
+LOG (VoskAPI:RemoveOrphanNodes():nnet-nnet.cc:948) Removed 0 orphan nodes.
+LOG (VoskAPI:RemoveOrphanComponents():nnet-nnet.cc:847) Removing 0 orphan components.
+LOG (VoskAPI:CompileLooped():nnet-compile-looped.cc:345) Spent 0.105853 seconds in looped compilation.
+LOG (VoskAPI:ReadDataFiles():model.cc:248) Loading i-vector extractor from model-0.22/ivector/final.ie
+LOG (VoskAPI:ComputeDerivedVars():ivector-extractor.cc:183) Computing derived variables for iVector extractor
+LOG (VoskAPI:ComputeDerivedVars():ivector-extractor.cc:204) Done.
+LOG (VoskAPI:ReadDataFiles():model.cc:281) Loading HCL and G from model-0.22/graph/HCLr.fst model-0.22/graph/Gr.fst
+LOG (VoskAPI:ReadDataFiles():model.cc:302) Loading winfo model-0.22/graph/phones/word_boundary.int
